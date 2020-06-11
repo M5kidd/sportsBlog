@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "sports-portfolio"
+  },
+  "targets": {
+    "sports-portfolio": {
+      "hosting": {
+        "blogging-website": [
+          "sports-portfolio"
+        ]
+      }
+    }
+  }
+}

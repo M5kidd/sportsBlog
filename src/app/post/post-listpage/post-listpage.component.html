@@ -1,0 +1,5 @@
+<a *ngFor="let article of posts" (click)="onSelectArticle(article.id)">
+  <h3>{{ article.title }}</h3>
+  <p>{{ article.content }}</p>
+  <p>{{ article.date }}</p>
+</a>
