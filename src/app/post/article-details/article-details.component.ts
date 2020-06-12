@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Route, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { PostService } from '../post.service';
 import { Post } from '../post.model';
@@ -23,7 +24,18 @@ export class ArticleDetailsComponent implements OnInit {
 
   getArticle() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    return this.postService.getArticle(id).subscribe(data => {
+    return this.postService.getArticle(id)
+    .pipe(
+      map( (data: any) => {
+        const dateFormat = data.date.toDate();
+        console.log(dateFormat);
+        return { ...data, date: dateFormat };
+        // .map( articleDetails => {
+        //   return { ...articleDetails, date: articleDetails.date.toDate() };
+        // });
+      })
+    )
+    .subscribe(data => {
       this.post = data;
     });
   }

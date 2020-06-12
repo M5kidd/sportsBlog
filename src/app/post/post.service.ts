@@ -22,6 +22,7 @@ export class PostService {
   }
 
   getArticle(articleId: string) {
+    // Reading individual article from database. Can cut down on reads if we get from our local stored array.
     this.postDoc = this.db.collection('posts').doc(articleId);
     return this.postDoc.valueChanges();
   }
@@ -34,9 +35,15 @@ export class PostService {
       map(docArray => {
       return docArray.map(doc => {
         const data: any = doc.payload.doc.data();
+        // console.log(data.date.toDate());
         return {
           id: doc.payload.doc.id,
-          ...data
+          title: data.title,
+          author: data.author,
+          content: data.content,
+          image: data.image,
+          date: data.date.toDate(),
+          // ...data
         };
       });
     }))
