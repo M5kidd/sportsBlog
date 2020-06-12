@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
 })
 export class PostListpageComponent implements OnInit, OnDestroy {
   posts: Post[];
-  postsSubscription: Subscription;
+  private postsSubscription: Subscription;
 
   constructor(private postService: PostService, private route: Router) { }
 
   ngOnInit(): void {
-    this.postsSubscription = this.postService.postsChanged.subscribe(posts => this.posts = posts);
+    this.postsSubscription = this.postService.postsChanged.subscribe((posts: Post[]) => this.posts = posts);
     this.postService.getPosts();
   }
 

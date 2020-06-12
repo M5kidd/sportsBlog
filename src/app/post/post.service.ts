@@ -10,7 +10,7 @@ import { Post } from './post.model';
   providedIn: 'root'
 })
 export class PostService {
-  availablePosts: Post[] = [];
+  // availablePosts: Post[] = [];
   postsChanged = new Subject<Post[]>();
   postDoc: AngularFirestoreDocument<Post>;
 
@@ -19,6 +19,18 @@ export class PostService {
   storeNewArticle(article: Post) {
     this.db.collection('posts').add(article);
     this.route.navigate(['article']);
+  }
+
+  getArticleToEdit(articleId: string) {
+    return this.db.collection('posts').doc(articleId);
+  }
+
+  deleteArticle(articleId: string) {
+    return this.getArticleToEdit(articleId).delete();
+  }
+
+  updateArticle(articleId: string, formData) {
+    return this.getArticleToEdit(articleId).update(formData);
   }
 
   getArticle(articleId: string) {
@@ -32,24 +44,24 @@ export class PostService {
     .collection('posts')
     .snapshotChanges()
     .pipe(
-      map(docArray => {
+      map((docArray: any) => {
       return docArray.map(doc => {
         const data: any = doc.payload.doc.data();
-        // console.log(data.date.toDate());
+        const dateFormated = data.date;
+        console.log(typeof(dateFormated));
         return {
           id: doc.payload.doc.id,
           title: data.title,
           author: data.author,
           content: data.content,
           image: data.image,
-          date: data.date.toDate(),
-          // ...data
+          date: dateFormated,
         };
       });
     }))
     .subscribe((posts: Post[]) => {
-      this.availablePosts = posts;
-      this.postsChanged.next([...this.availablePosts]);
+      // this.availablePosts = posts;
+      this.postsChanged.next(posts);
     });
     }
    }

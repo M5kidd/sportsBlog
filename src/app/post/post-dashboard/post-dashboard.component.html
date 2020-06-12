@@ -9,12 +9,12 @@
     <input matInput placeholder="Who's writing this?" value="Matthew Kidd" type="text"ngModel name="author" required>
   </mat-form-field>
 
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Choose a date</mat-label>
     <input matInput [matDatepicker]="picker" ngModel name="date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <label for="img">Select image:</label>
   <input type="file" id="img" ngModel name="img" accept="image/*">
@@ -23,5 +23,5 @@
     <mat-label>Content</mat-label>
     <textarea matInput rows="20" placeholder="Type your article here" ngModel name="content" required></textarea>
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Submit</button>
+  <button mat-raised-button color="accent" type="submit" [disabled]="f.invalid">Create Post</button>
 </form>

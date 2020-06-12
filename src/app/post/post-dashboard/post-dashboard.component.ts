@@ -17,7 +17,8 @@ export class PostDashboardComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const createdArticle = {
-      ...form.value
+      ...form.value,
+      date: new Date().toISOString()
     };
     this.postService.storeNewArticle(createdArticle);
   }

@@ -25,16 +25,12 @@ export class ArticleDetailsComponent implements OnInit {
   getArticle() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     return this.postService.getArticle(id)
-    .pipe(
-      map( (data: any) => {
-        const dateFormat = data.date.toDate();
-        console.log(dateFormat);
-        return { ...data, date: dateFormat };
-        // .map( articleDetails => {
-        //   return { ...articleDetails, date: articleDetails.date.toDate() };
-        // });
-      })
-    )
+    // .pipe(
+    //   map( (data: any) => {
+    //     const dateFormat = data.date;
+    //     return { ...data, date: dateFormat };
+    //   })
+    // )
     .subscribe(data => {
       this.post = data;
     });
