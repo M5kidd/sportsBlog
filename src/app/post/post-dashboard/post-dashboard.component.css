@@ -1,5 +1,42 @@
+mat-card {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-content: center;
+  align-content: center;
+  margin-top: 15px;
+}
+
 .create-article {
-  width: 80vw;
+  grid-column: 2 / 3;
+  width: 75vw;
   display: flex;
   flex-direction: column;
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 150px;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  /* background: rgb(252, 249, 249); */
+  margin: 10px 0;
+}
+
+.dropzone:hover {
+  border: 2px solid cyan;
+  color: #dadada !important;
+  /* background-color: lightgray; */
+}
+
+.file-label {
+    color: royalblue;
+}
+
+.file {
+  background-color: orange;
+  display: flex;
+  /* flex-direction: column; */
 }

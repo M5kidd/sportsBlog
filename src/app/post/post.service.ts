@@ -48,7 +48,6 @@ export class PostService {
       return docArray.map(doc => {
         const data: any = doc.payload.doc.data();
         const dateFormated = data.date;
-        console.log(typeof(dateFormated));
         return {
           id: doc.payload.doc.id,
           title: data.title,

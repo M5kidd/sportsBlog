@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from './navbar/navbar.component';
+// import { ReactiveFormsModule } from '@angular/forms';
 // import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     CommonModule,
     MaterialModule,
+    // ReactiveFormsModule,
     RouterModule
     // NavigationComponent
   ],
@@ -18,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule,
     MaterialModule,
     NavbarComponent,
+    // ReactiveFormsModule,
     RouterModule
     // NavigationComponent
   ]

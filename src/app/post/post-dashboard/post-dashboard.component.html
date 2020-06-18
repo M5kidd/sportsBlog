@@ -1,27 +1,36 @@
-<form class="create-article" #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <mat-form-field>
-    <mat-label>Article Title</mat-label>
-    <input matInput placeholder="Name your article" ngModel name="title" required>
-  </mat-form-field>
+<article>
 
-  <mat-form-field>
-    <mat-label>Author</mat-label>
-    <input matInput placeholder="Who's writing this?" value="Matthew Kidd" type="text"ngModel name="author" required>
-  </mat-form-field>
+  <mat-card class="container">
+    <form class="create-article" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <mat-label>Article Title</mat-label>
+        <input matInput placeholder="Name your article" ngModel name="title" required>
+      </mat-form-field>
 
-  <!-- <mat-form-field>
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" ngModel name="date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="Who's writing this?" value="Matthew Kidd" type="text"ngModel name="author" required>
+      </mat-form-field>
 
-  <label for="img">Select image:</label>
-  <input type="file" id="img" ngModel name="img" accept="image/*">
+      <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+        <h3>Drop Zone</h3>
+        <p>Drag & Drop Image Here</p>
+        <div class="file">
+          <label class="file-label"></label><br>
+          <input type="file" class="file-input" (change)="onDrop($event.target.files)" accept="image/*">
+        </div>
+      </div>
+      <h3>Uploads</h3>
+      <div *ngFor="let file of files">
+        <app-upload-task [file]="file"></app-upload-task>
+      </div>
+      <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
 
-  <mat-form-field>
-    <mat-label>Content</mat-label>
-    <textarea matInput rows="20" placeholder="Type your article here" ngModel name="content" required></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="accent" type="submit" [disabled]="f.invalid">Create Post</button>
-</form>
+      <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput rows="15" placeholder="Type your article here" ngModel name="content" required></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" [disabled]="f.invalid">Create Post</button>
+    </form>
+  </mat-card>
+</article>
