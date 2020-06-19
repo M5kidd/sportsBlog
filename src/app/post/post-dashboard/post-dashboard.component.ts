@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { PostService } from '../post.service';
-// import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-dashboard',
@@ -19,7 +18,6 @@ export class PostDashboardComponent implements OnInit {
   isHovering: boolean;
 
   files: File[] = [];
-  // uploadedFile: File = null;
 
   constructor(private postService: PostService, private storage: AngularFireStorage) { }
 
@@ -30,14 +28,20 @@ export class PostDashboardComponent implements OnInit {
     this.isHovering = event;
   }
 
-  onDrop(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
+  onDrop(event) {
+    const file = event.target.files[0];
+    const currentDate = Date.now();
+    const fileName = file.name;
+    const filePath = currentDate + '_' + fileName;
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
+    // const task = this.storage.upload(filePath, file);
+    // for (let i = 0; i < files.length; i++) {
+    //   this.files.push(files.item(i));
     }
       // this.uploadedFile = file;
     // reach to service and send.
       // console.log(files);
-    }
   // uploadImage(event) {
   //   const file = event.target.files[0];
   //   const path = `article/${file.name}`;

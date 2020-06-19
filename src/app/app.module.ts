@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MaterialModule } from './material.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.component';
@@ -23,7 +22,6 @@ import { AuthModule } from './auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
-    PostDashboardComponent,
     PostListpageComponent,
     ArticleDetailsComponent,
     PostDashboardComponent,
@@ -37,7 +35,6 @@ import { AuthModule } from './auth/auth.module';
     AngularFirestoreModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    // MaterialModule,
     CoreModule,
     SharedModule,
     FormsModule,
