@@ -16,6 +16,12 @@ export class PostService {
 
   constructor(private db: AngularFirestore, private route: Router) {}
 
+  linkImgUrl(path, fileSize) {
+    // retrieve from database then us getdownloadUrl() to retrieve actual file
+    this.db.collection('images').add( {path, fileSize});
+
+  }
+
   storeNewArticle(article: Post) {
     this.db.collection('posts').add(article);
     this.route.navigate(['article']);

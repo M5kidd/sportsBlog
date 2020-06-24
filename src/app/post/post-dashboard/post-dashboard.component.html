@@ -12,19 +12,23 @@
         <input matInput placeholder="Who's writing this?" value="Matthew Kidd" type="text"ngModel name="author" required>
       </mat-form-field>
 
-      <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
-        <h3>Drop Zone</h3>
-        <p>Drag & Drop Image Here</p>
-        <div class="file">
-          <label class="file-label"></label><br>
-          <input type="file" class="file-input" (change)="onDrop($event)" accept="image/*">
-        </div>
+      <div class="file">
+        <label class="file-label"></label><br>
+        <input type="file" class="file-input" (change)="onUpload($event)" accept="image/*">
       </div>
-      <h3>Uploads</h3>
-      <div *ngFor="let file of files">
-        <app-upload-task [file]="file"></app-upload-task>
+      <!-- <div *ngIf="(snapshot | async) as snap">
+        {{ snap.bytes}}
+      </div> -->
+      <div *ngIf="uploadPercent">
+        <h3>Uploads</h3>
+        <mat-progress-bar *ngIf="uploadPercent | async as pct" mode="determinate" [value]="pct"></mat-progress-bar>
       </div>
-      <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+      <div *ngIf="downloadURL | async as url">
+        <h3>Results!</h3>
+        <img class="imgPreview" [src]="url">
+        <a [href]="url">Download Me!</a>
+      </div>
+      <!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->
 
       <mat-form-field>
         <mat-label>Content</mat-label>

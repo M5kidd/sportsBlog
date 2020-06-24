@@ -33,6 +33,7 @@ export class ArticleDetailsComponent implements OnInit {
     // )
     .subscribe(data => {
       this.post = data;
+      console.log(this.post);
     });
   }
 

@@ -40,3 +40,11 @@ mat-card {
   display: flex;
   /* flex-direction: column; */
 }
+
+/* progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+} */
+
+.imgPreview {
+  max-width: 250px;
+}

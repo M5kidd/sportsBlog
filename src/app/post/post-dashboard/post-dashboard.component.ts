@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { PostService } from '../post.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-dashboard',
@@ -12,8 +13,8 @@ import { PostService } from '../post.service';
 })
 export class PostDashboardComponent implements OnInit {
   uploadPercent: Observable<number>;
+  snapshot: Observable<any>;
   downloadURL: Observable<string>;
-  image: string;
 
   isHovering: boolean;
 
@@ -29,42 +30,48 @@ export class PostDashboardComponent implements OnInit {
   }
 
   onDrop(event) {
+    this.onUpload(event);
+  }
+
+  onUpload(event) {
     const file = event.target.files[0];
     const currentDate = Date.now();
     const fileName = file.name;
-    const filePath = currentDate + '_' + fileName;
-    const ref = this.storage.ref(filePath);
-    const task = ref.put(file);
-    // const task = this.storage.upload(filePath, file);
-    // for (let i = 0; i < files.length; i++) {
-    //   this.files.push(files.item(i));
+    if (file.type.split('/')[0] !== 'image') {
+      alert('Only Image Files are Accepted');
+    } else {
+      const filePath = currentDate + '_' + fileName;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+      // console.log(task);
+
+      // observe percentage changes
+      this.uploadPercent = task.percentageChanges();
+      this.snapshot = task.snapshotChanges();
+      console.log(this.snapshot);
+      // get notified when the download URL is available
+      task.snapshotChanges().pipe(
+          finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+       )
+      .subscribe(snap => {
+        if (snap.bytesTransferred === snap.totalBytes) {
+          this.postService.linkImgUrl(filePath, snap.totalBytes);
+        }
+      });
+
     }
-      // this.uploadedFile = file;
-    // reach to service and send.
-      // console.log(files);
-  // uploadImage(event) {
-  //   const file = event.target.files[0];
-  //   const path = `article/${file.name}`;
-  //   const filePath = 'name-your-file-path-here';
-  //   const fileRef = this.storage.ref(filePath);
-  //   const task = this.storage.upload(filePath, file);
-  //   if (file.type.split('/')[0] !== 'image') {
-  //     return alert('Only Upload Image Files');
-  //   } else {
-  //     this.uploadPercent = task.percentageChanges();
-  //     task.snapshotChanges().pipe(
-  //       finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-  //       )
-  //       .subscribe();
-  //   }
-  // }
+
+    // isActive (snapshot) {
+    //   return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
+    // }
+
+  }
 
   onSubmit(form: NgForm) {
     const createdArticle = {
       ...form.value,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
     };
-    // console.log(createdArticle);
     this.postService.storeNewArticle(createdArticle);
   }
 
