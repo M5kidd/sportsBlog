@@ -10,17 +10,10 @@ import { Post } from './post.model';
   providedIn: 'root'
 })
 export class PostService {
-  // availablePosts: Post[] = [];
   postsChanged = new Subject<Post[]>();
   postDoc: AngularFirestoreDocument<Post>;
 
   constructor(private db: AngularFirestore, private route: Router) {}
-
-  linkImgUrl(path, fileSize) {
-    // retrieve from database then us getdownloadUrl() to retrieve actual file
-    this.db.collection('images').add( {path, fileSize});
-
-  }
 
   storeNewArticle(article: Post) {
     this.db.collection('posts').add(article);
@@ -65,7 +58,6 @@ export class PostService {
       });
     }))
     .subscribe((posts: Post[]) => {
-      // this.availablePosts = posts;
       this.postsChanged.next(posts);
     });
     }

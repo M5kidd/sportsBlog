@@ -14,8 +14,6 @@ import { SharedModule } from './shared/shared.module';
 import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.component';
 import { PostListpageComponent } from './post/post-listpage/post-listpage.component';
 import { ArticleDetailsComponent } from './post/article-details/article-details.component';
-import { DropzoneDirective } from './post/post-dashboard/dropzone.directive';
-import { UploadTaskComponent } from './post/post-dashboard/upload-task.component';
 import { AuthModule } from './auth/auth.module';
 
 
@@ -24,9 +22,7 @@ import { AuthModule } from './auth/auth.module';
     AppComponent,
     PostListpageComponent,
     ArticleDetailsComponent,
-    PostDashboardComponent,
-    DropzoneDirective,
-    UploadTaskComponent
+    PostDashboardComponent
   ],
   imports: [
     BrowserModule,

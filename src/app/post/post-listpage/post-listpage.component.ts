@@ -21,8 +21,8 @@ export class PostListpageComponent implements OnInit, OnDestroy {
     this.postService.getPosts();
   }
 
-  onSelectArticle(articleId: Post) {
-    this.route.navigate(['article', articleId]);
+  onDelete(id: string) {
+    this.postService.deleteArticle(id);
   }
 
   ngOnDestroy() {

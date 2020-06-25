@@ -1,3 +1,13 @@
-a {
+#articlesContainer {
+  display: flex;
+}
+
+mat-card {
   cursor: pointer;
+  width: 250px;
+  margin: 15px;
+}
+
+img {
+  width: 100%;
 }

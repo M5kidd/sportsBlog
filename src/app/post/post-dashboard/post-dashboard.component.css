@@ -13,38 +13,10 @@ mat-card {
   flex-direction: column;
 }
 
-.dropzone {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 150px;
-  border: 2px dashed royalblue;
-  border-radius: 10px;
-  /* background: rgb(252, 249, 249); */
-  margin: 10px 0;
-}
-
-.dropzone:hover {
-  border: 2px solid cyan;
-  color: #dadada !important;
-  /* background-color: lightgray; */
-}
-
-.file-label {
-    color: royalblue;
-}
-
-.file {
-  background-color: orange;
-  display: flex;
-  /* flex-direction: column; */
-}
-
-/* progress::-webkit-progress-value {
-  transition: width 0.1s ease;
-} */
-
 .imgPreview {
   max-width: 250px;
+}
+
+button {
+  width: min-content;
 }

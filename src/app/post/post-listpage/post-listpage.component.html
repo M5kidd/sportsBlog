@@ -1,5 +1,15 @@
-<a *ngFor="let article of posts" (click)="onSelectArticle(article.id)">
-  <h3>{{ article.title }}</h3>
-  <p>{{ article.content }}</p>
-  <p>{{ article.date | date }}</p>
-</a>
+
+<section id="articlesContainer">
+  <mat-card *ngFor="let article of posts">
+    <mat-card-content [routerLink]="article.id">
+      <img [src]="article.image" [alt]="article.title">
+      <h3>{{ article.title }}</h3>
+      <p>posted by {{ article.author }}</p>
+      <p>{{ article.date | date }}</p>
+    </mat-card-content>
+    <button mat-icon-button>
+
+      <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" (click)="onDelete(article.id)">delete</mat-icon>
+    </button>
+  </mat-card>
+</section>

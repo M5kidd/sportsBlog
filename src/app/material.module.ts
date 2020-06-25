@@ -10,31 +10,31 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
   imports: [
-    // CommonModule,
     MatButtonModule,
-    MatToolbarModule,
-    MatInputModule,
-    // MatDatepickerModule,
-    MatNativeDateModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatToolbarModule
   ],
   exports: [
     MatButtonModule,
-    MatToolbarModule,
-    MatInputModule,
-    // MatDatepickerModule,
-    MatNativeDateModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatToolbarModule
   ]
 })
 export class MaterialModule { }
