@@ -25,11 +25,11 @@ export class PostDashboardComponent implements OnInit {
     const file = event.target.files[0];
     const currentDate = Date.now();
     const fileName = file.name;
+    const filePath = 'images/' + currentDate + '_' + fileName;
+    const fileRef = this.storage.ref(filePath);
     if (file.type.split('/')[0] !== 'image') {
       return alert('Only Image Files are Accepted');
     } else {
-      const filePath = 'images/' + currentDate + '_' + fileName;
-      const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
 
       // observe percentage changes

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { PostService } from '../post.service';
 import { Post } from '../post.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-article-details',
@@ -16,24 +16,32 @@ export class ArticleDetailsComponent implements OnInit {
   post: Post;
   articleId: string;
 
-  constructor( private postService: PostService, private activatedRoute: ActivatedRoute ) { }
+  constructor(
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router, private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.getArticle();
   }
 
+  onDelete() {
+    const article = {
+      ...this.post,
+      id: this.articleId
+    };
+    this.postService.deleteArticle(article);
+    this.router.navigate(['/article']);
+  }
+
+  onEdit(id: string) {}
+
   getArticle() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    return this.postService.getArticle(id)
-    // .pipe(
-    //   map( (data: any) => {
-    //     const dateFormat = data.date;
-    //     return { ...data, date: dateFormat };
-    //   })
-    // )
+    this.articleId = this.activatedRoute.snapshot.paramMap.get('id');
+    return this.postService.getArticle(this.articleId)
     .subscribe(data => {
       this.post = data;
-      console.log(this.post);
     });
   }
 

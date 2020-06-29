@@ -1,0 +1,13 @@
+#articlesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+  width: 100vw;
+  gap: 10px;
+  justify-content: center;
+}
+
+mat-card {
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}

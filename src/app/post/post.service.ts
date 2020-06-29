@@ -5,15 +5,22 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Post } from './post.model';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
+  posts: Post[] = [];
   postsChanged = new Subject<Post[]>();
   postDoc: AngularFirestoreDocument<Post>;
+  articleRef;
+  currentArticle: any;
 
-  constructor(private db: AngularFirestore, private route: Router) {}
+  constructor(
+    private db: AngularFirestore,
+    private storage: AngularFireStorage,
+    private route: Router) {}
 
   storeNewArticle(article: Post) {
     this.db.collection('posts').add(article);
@@ -24,8 +31,10 @@ export class PostService {
     return this.db.collection('posts').doc(articleId);
   }
 
-  deleteArticle(articleId: string) {
-    return this.getArticleToEdit(articleId).delete();
+  deleteArticle(article: Post) {
+    const imageUrl: string = article.image;
+    this.storage.storage.refFromURL(imageUrl).delete();
+    return this.getArticleToEdit(article.id).delete();
   }
 
   updateArticle(articleId: string, formData) {
@@ -58,6 +67,7 @@ export class PostService {
       });
     }))
     .subscribe((posts: Post[]) => {
+      this.posts = posts;
       this.postsChanged.next(posts);
     });
     }

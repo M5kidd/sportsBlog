@@ -1,15 +1,15 @@
-
 <section id="articlesContainer">
   <mat-card *ngFor="let article of posts">
-    <mat-card-content [routerLink]="article.id">
-      <img [src]="article.image" [alt]="article.title">
-      <h3>{{ article.title }}</h3>
-      <p>posted by {{ article.author }}</p>
-      <p>{{ article.date | date }}</p>
+    <mat-card-content [routerLink]="article.id" class="container">
+      <img mat-card-image [src]="article.image" [alt]="article.title">
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <mat-card-subtitle>posted by {{ article.author }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
     </mat-card-content>
-    <button mat-icon-button>
-
-      <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" (click)="onDelete(article.id)">delete</mat-icon>
-    </button>
+    <mat-card-actions *ngIf="isAuth">
+      <button mat-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn" (click)="onDelete(article)">delete</mat-icon>
+      </button>
+    </mat-card-actions>
   </mat-card>
 </section>

@@ -38,7 +38,6 @@ export class AuthService {
       authData.email,
       authData.password
     ).then(result => {
-      console.log(result);
       this.uiService.loadingStateChanged.next(false);
     }
     ).catch(error => {
