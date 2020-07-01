@@ -3,10 +3,10 @@
     <mat-card-content [routerLink]="article.id" class="container">
       <img mat-card-image [src]="article.image" [alt]="article.title">
       <mat-card-title>{{ article.title }}</mat-card-title>
-      <mat-card-subtitle>posted by {{ article.author }}</mat-card-subtitle>
+      <mat-card-subtitle>Posted by {{ article.author }}</mat-card-subtitle>
       <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
     </mat-card-content>
-    <mat-card-actions *ngIf="isAuth">
+    <mat-card-actions *ngIf="this.authService.userId === 'Fz8Cp89MDPhlyoVTuCCPOR4mubo2'">
       <button mat-button>
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn" (click)="onDelete(article)">delete</mat-icon>
       </button>

@@ -1,17 +1,52 @@
-<section id="articlesContainer">
-  <mat-card *ngIf="post">
+<ng-container id="articlesContainer" *ngIf="post">
+  <mat-card *ngIf="!editingMode">
     <img mat-card-image [src]="post.image" [alt]="post.title">
     <mat-card-title>{{ post.title }}</mat-card-title>
-    <mat-card-subtitle>posted by {{ post.author }}</mat-card-subtitle>
-    <mat-card-subtitle>{{ post.date | date }}</mat-card-subtitle>
+    <div class="sameLine">
+      <mat-card-subtitle>Posted by {{ post.author }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ post.date | date }}</mat-card-subtitle>
+    </div>
     <mat-card-content class="container">{{ post.content }}</mat-card-content>
-    <mat-card-actions>
+    <!-- Will need to change if allowing multiple users to write posts. -->
+    <mat-card-actions *ngIf="this.authService.userId === 'Fz8Cp89MDPhlyoVTuCCPOR4mubo2'">
       <button mat-button>
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn" (click)="onDelete()">delete</mat-icon>
       </button>
       <button mat-button>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" (click)="onEdit(post.id)">edit</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent" (click)="editingMode = true">edit</mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>
-</section>
+  <mat-card *ngIf="editingMode">
+    <form class="edit-article" #f="ngForm" (ngSubmit)="updatePost(f)">
+      <mat-form-field>
+        <mat-label>Article Title</mat-label>
+        <input matInput placeholder="Name your article" [(ngModel)]="post.title" name="title" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="Who's writing this?" type="text"[(ngModel)]="post.author" name="author" required>
+      </mat-form-field>
+
+      <!-- Can not currently update image -->
+      <!-- <div>
+        <input type="file" class="file-input" (change)="onUpload($event)" accept="image/*">
+      </div>
+      <div *ngIf="uploadPercent">
+        <h3>Uploads</h3>
+        <mat-progress-bar *ngIf="uploadPercent | async as pct" mode="determinate" [value]="pct"></mat-progress-bar>
+      </div>
+      <div *ngIf="downloadURL">
+        <h3>Results!</h3>
+        <img class="imgPreview" [src]="downloadURL">
+      </div> -->
+
+      <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput rows="15" placeholder="Type your article here" [(ngModel)]="post.content" name="content" required></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" [disabled]="f.invalid">Save</button>
+    </form>
+  </mat-card>
+</ng-container>

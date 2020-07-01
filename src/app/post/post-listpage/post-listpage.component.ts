@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
@@ -14,29 +13,29 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class PostListpageComponent implements OnInit, OnDestroy {
   posts: Post[];
   private postsSubscription: Subscription;
-  isAuth = true;
-  authSub: Subscription;
+  // isAuth = false;
+  // private authSub: Subscription;
+  // private mySubs: Subscription[] = [];
 
   constructor(
     private postService: PostService,
-    private route: Router,
-    private authService: AuthService
+    public authService: AuthService
     ) { }
 
-  ngOnInit(): void {
-    this.authSub = this.authService.authChange.subscribe(statusChange => {
-      this.isAuth = statusChange;
-    });
-    this.postsSubscription = this.postService.postsChanged.subscribe((posts: Post[]) => this.posts = posts);
+  ngOnInit() {
     this.postService.getPosts();
+    this.postsSubscription = this.postService.postsChanged.subscribe((posts: Post[]) => this.posts = posts);
   }
 
   onDelete(article: Post) {
     this.postService.deleteArticle(article);
   }
 
+  // cancelSubscriptions() {
+  //   this.mySubs.forEach(subs => subs.unsubscribe());
+  // }
+
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();
-    this.authSub.unsubscribe();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { PostService } from '../post.service';
@@ -15,11 +16,13 @@ export class ArticleDetailsComponent implements OnInit {
   articleSubscription: Subscription;
   post: Post;
   articleId: string;
+  editingMode = false;
 
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
-    private router: Router, private authService: AuthService
+    private router: Router,
+    public authService: AuthService
     ) { }
 
   ngOnInit(): void {
@@ -35,7 +38,10 @@ export class ArticleDetailsComponent implements OnInit {
     this.router.navigate(['/article']);
   }
 
-  onEdit(id: string) {}
+  updatePost(form: NgForm) {
+    this.postService.updateArticle(this.articleId, form.value);
+    this.editingMode = false;
+  }
 
   getArticle() {
     this.articleId = this.activatedRoute.snapshot.paramMap.get('id');

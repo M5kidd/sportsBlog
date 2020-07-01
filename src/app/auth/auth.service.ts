@@ -11,19 +11,21 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated = false;
   authChange = new Subject<boolean>();
-  // private user: User;
+  private isAuthenticated = false;
+  public userId: string;
 
   constructor(private uiService: UiService, private afAuth: AngularFireAuth, private router: Router) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        this.userId = user.uid;
         this.isAuthenticated = true;
         this.authChange.next(true);
         this.router.navigate(['/dashboard']);
       } else {
+        console.log('my else user ran ' + user);
         this.authChange.next(false);
         this.router.navigate(['/article']);
         this.isAuthenticated = false;

@@ -1,13 +1,43 @@
 #articlesContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+  grid-template-columns: minmax(20px, 1fr) minmax(auto, 75vw) minmax(20px, 1fr);
   width: 100vw;
   gap: 10px;
   justify-content: center;
 }
 
 mat-card {
-  cursor: pointer;
+  /* cursor: pointer; */
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 250px)); */
+  grid-column: 2;
   margin-top: 10px;
   text-align: center;
+  width: 75vw;
+
+}
+
+img {
+  width: 100%;
+  max-width: 250px;
+}
+
+.sameLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+
+  /* justify-content: center; */
+}
+
+mat-card-subtitle {
+  margin: 0px 10px 10px 10px;
+}
+
+.edit-article {
+  grid-column: 2 / 3;
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
 }

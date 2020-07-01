@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Post } from './post.model';
-import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  posts: Post[] = [];
   postsChanged = new Subject<Post[]>();
   postDoc: AngularFirestoreDocument<Post>;
-  articleRef;
-  currentArticle: any;
 
   constructor(
     private db: AngularFirestore,
@@ -37,7 +34,7 @@ export class PostService {
     return this.getArticleToEdit(article.id).delete();
   }
 
-  updateArticle(articleId: string, formData) {
+  updateArticle(articleId: string, formData: FormData) {
     return this.getArticleToEdit(articleId).update(formData);
   }
 
@@ -67,7 +64,6 @@ export class PostService {
       });
     }))
     .subscribe((posts: Post[]) => {
-      this.posts = posts;
       this.postsChanged.next(posts);
     });
     }
