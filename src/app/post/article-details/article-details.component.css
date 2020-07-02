@@ -4,6 +4,7 @@
   width: 100vw;
   gap: 10px;
   justify-content: center;
+  min-height: 85vh;
 }
 
 mat-card {
@@ -12,6 +13,7 @@ mat-card {
   grid-template-columns: repeat(auto-fit, minmax(100px, 250px)); */
   grid-column: 2;
   margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
   width: 75vw;
 
@@ -27,8 +29,6 @@ img {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-
-  /* justify-content: center; */
 }
 
 mat-card-subtitle {
@@ -40,4 +40,8 @@ mat-card-subtitle {
   width: 75vw;
   display: flex;
   flex-direction: column;
+}
+
+mat-card-content {
+  white-space: pre-wrap;
 }

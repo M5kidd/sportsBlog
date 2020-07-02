@@ -1,15 +1,21 @@
+
 <section id="articlesContainer">
-  <mat-card *ngFor="let article of posts">
-    <mat-card-content [routerLink]="article.id" class="container">
-      <img mat-card-image [src]="article.image" [alt]="article.title">
-      <mat-card-title>{{ article.title }}</mat-card-title>
-      <mat-card-subtitle>Posted by {{ article.author }}</mat-card-subtitle>
-      <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
-    </mat-card-content>
-    <mat-card-actions *ngIf="this.authService.userId === 'Fz8Cp89MDPhlyoVTuCCPOR4mubo2'">
-      <button mat-button>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn" (click)="onDelete(article)">delete</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</section>
+    <mat-card *ngFor="let article of posts">
+      <mat-card-content [routerLink]="article.id" class="container">
+        <img mat-card-image [src]="article.image" [alt]="article.title">
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <mat-card-subtitle>Posted by {{ article.author }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-actions *ngIf="this.authService.userId === 'Fz8Cp89MDPhlyoVTuCCPOR4mubo2'">
+        <button mat-button>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn" (click)="onDelete(article)">delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+  <!-- <mat-paginator [length]="100"
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator> -->
+

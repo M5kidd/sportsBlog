@@ -15,6 +15,7 @@ import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.com
 import { PostListpageComponent } from './post/post-listpage/post-listpage.component';
 import { ArticleDetailsComponent } from './post/article-details/article-details.component';
 import { AuthModule } from './auth/auth.module';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthModule } from './auth/auth.module';
     AppComponent,
     PostListpageComponent,
     ArticleDetailsComponent,
-    PostDashboardComponent
+    PostDashboardComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

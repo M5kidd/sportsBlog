@@ -11,6 +11,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -20,9 +24,13 @@ import {MatIconModule} from '@angular/material/icon';
     MatCheckboxModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressBarModule,
+    MatSidenavModule,
     MatSnackBarModule,
+    MatTableModule,
     MatToolbarModule
   ],
   exports: [
@@ -31,9 +39,13 @@ import {MatIconModule} from '@angular/material/icon';
     MatCheckboxModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressBarModule,
+    MatSidenavModule,
     MatSnackBarModule,
+    MatTableModule,
     MatToolbarModule
   ]
 })

@@ -3,3 +3,11 @@ main {
   grid-template-columns: 1fr auto 1fr;
 }
 
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Output() sidenavToggle = new EventEmitter<void>();
   isAuth = false;
   authSubscription: Subscription;
 
@@ -22,16 +23,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  onToggleSidenav() {
+    this.sidenavToggle.emit();
+  }
+
   onLogout() {
     this.authService.logout();
   }
-
-  // onGoogleLogin() {
-  //   this.authService.onGoogleLogin();
-  // }
-
-  // onLogout() {
-  //   this.authService.onLogout();
-  // }
 
 }

@@ -15,6 +15,7 @@
       <div>
         <input type="file" class="file-input" (change)="onUpload($event)" accept="image/*">
       </div>
+      <mat-hint>For consistency aim for square images!</mat-hint>
       <div *ngIf="uploadPercent">
         <h3>Uploads</h3>
         <mat-progress-bar *ngIf="uploadPercent | async as pct" mode="determinate" [value]="pct"></mat-progress-bar>

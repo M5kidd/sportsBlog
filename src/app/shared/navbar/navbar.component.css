@@ -20,3 +20,21 @@ li:focus {
   display: none;
   border: none;
 }
+
+.smallScreen {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 599px) {
+  #navContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 599px) {
+  .smallScreen {
+    display: none;
+  }
+}

@@ -25,7 +25,7 @@ export class AuthService {
         this.authChange.next(true);
         this.router.navigate(['/dashboard']);
       } else {
-        console.log('my else user ran ' + user);
+        // console.log('my else user ran ' + user);
         this.authChange.next(false);
         this.router.navigate(['/article']);
         this.isAuthenticated = false;
@@ -35,14 +35,18 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
+    // console.log(authData);
     this.uiService.loadingStateChanged.next(true);
     this.afAuth.signInWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
+      console.log('success: ' + result);
       this.uiService.loadingStateChanged.next(false);
     }
     ).catch(error => {
+      console.log('error: ' + error);
+
       this.uiService.loadingStateChanged.next(false);
       this.uiService.showSnackBar(error.message, null, 3000);
     });

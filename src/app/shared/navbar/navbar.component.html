@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-  <a routerLink="/article">My Blog</a>
+
+  <a routerLink="/article">Sports Web Design</a>
   <ul id="navContainer">
     <li routerLink="/login"*ngIf="!isAuth"><a>Login</a></li>
     <li *ngIf="isAuth" (click)="onLogout()"><a>Logout</a></li>
@@ -7,6 +8,11 @@
     <li><a>Start a Project</a></li>
     <li><a href="#">Home</a></li>
   </ul>
+  <div class="smallScreen">
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
   <!-- <mat-toolbar-row class="spacer"></mat-toolbar-row> -->
   <!-- <div *ngIf="auth.afAuth.authState | async as user; else showLogin"></div>
     <span>Hello {{ user.displayName }}</span>
