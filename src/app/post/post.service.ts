@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Post } from './post.model';
+import { UiService } from '../shared/ui.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class PostService {
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
-    private route: Router) {}
+    private route: Router,
+    private uiService: UiService
+    ) {}
 
   storeNewArticle(article: Post) {
     this.db.collection('posts').add(article);
@@ -45,6 +48,7 @@ export class PostService {
   }
 
    getPosts() {
+    this.uiService.loadingStateChanged.next(true);
     this.db
     .collection('posts')
     .snapshotChanges()

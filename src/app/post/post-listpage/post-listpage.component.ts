@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
@@ -18,21 +16,19 @@ export class PostListpageComponent implements OnInit, OnDestroy {
 
   constructor(
     private postService: PostService,
-    public authService: AuthService
+    public authService: AuthService,
     ) { }
 
   ngOnInit() {
     this.postService.getPosts();
-    this.postsSubscription = this.postService.postsChanged.subscribe((posts: Post[]) => this.posts = posts);
+    this.postsSubscription = this.postService.postsChanged.subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
   }
 
   onDelete(article: Post) {
     this.postService.deleteArticle(article);
   }
-
-  // cancelSubscriptions() {
-  //   this.mySubs.forEach(subs => subs.unsubscribe());
-  // }
 
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();

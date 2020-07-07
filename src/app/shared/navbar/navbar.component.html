@@ -1,12 +1,12 @@
 <mat-toolbar color="primary">
 
-  <a routerLink="/article">Sports Web Design</a>
+  <a routerLink="/article" class="navigation">Sports Web Design</a>
   <ul id="navContainer">
-    <li routerLink="/login"*ngIf="!isAuth"><a>Login</a></li>
-    <li *ngIf="isAuth" (click)="onLogout()"><a>Logout</a></li>
-    <li routerLink="/dashboard" *ngIf="isAuth"><a>New Post</a></li>
-    <li><a>Start a Project</a></li>
-    <li><a href="#">Home</a></li>
+    <li routerLink="/login"*ngIf="!isAuth" id="login"><a>Login</a></li>
+    <li *ngIf="isAuth" (click)="onLogout()" class=""><a class="navigation">Logout</a></li>
+    <li routerLink="/dashboard" *ngIf="isAuth"><a class="navigation">New Post</a></li>
+    <li><a class="navigation">Start a Project</a></li>
+    <li><a href="#" class="navigation">Home</a></li>
   </ul>
   <div class="smallScreen">
     <button mat-icon-button (click)="onToggleSidenav()">

@@ -15,6 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -28,6 +29,7 @@ import {MatListModule} from '@angular/material/list';
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatTableModule,
@@ -43,6 +45,7 @@ import {MatListModule} from '@angular/material/list';
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatTableModule,

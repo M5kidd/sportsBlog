@@ -4,25 +4,24 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from './navbar/navbar.component';
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { NavigationComponent } from './navigation/navigation.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [
+    NavbarComponent,
+    SidenavComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
-    // ReactiveFormsModule,
     RouterModule
-    // NavigationComponent
   ],
   exports: [
     CommonModule,
     MaterialModule,
     NavbarComponent,
-    // ReactiveFormsModule,
+    SidenavComponent,
     RouterModule
-    // NavigationComponent
   ]
 })
 export class SharedModule { }

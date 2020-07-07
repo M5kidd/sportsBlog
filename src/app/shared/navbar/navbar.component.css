@@ -5,13 +5,13 @@
   justify-content: flex-end;
 }
 
-a {
+.navigation {
   text-decoration: none;
   color: white;
   margin: 15px;
 }
 
-a:hover, a:active {
+.navigation:hover, .navigation:active {
   color: darkgray;
   cursor: pointer;
 }
@@ -19,12 +19,25 @@ a:hover, a:active {
 li:focus {
   display: none;
   border: none;
+  cursor: pointer;
 }
 
 .smallScreen {
   width: 100vw;
   display: flex;
   justify-content: flex-end;
+}
+
+#login {
+  margin-right: 25%;
+  cursor: default;
+  opacity: 0;
+  /* color: transparent; */
+}
+
+#login:hover {
+  opacity: 10;
+  color: blue;
 }
 
 @media (max-width: 599px) {
